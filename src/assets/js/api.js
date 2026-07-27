@@ -3,8 +3,10 @@ import { WEB_APP_URL, COMMON, token } from "./config.js";
 // 3. Export clean, API-style functions
 export const api = {
     tokenCheck: (pageType) => tokenCheck(pageType),
+    savePattern: (patternData) => saveToGAS('savePattern', patternData),
     getLevels: () => getPatternLevels(),
-    getPatternList: () => getPatternList()
+    getPatternList: () => getPatternList(),
+    getPatternDetail: (patternId) => getPatternDetail(patternId),
 };
 
 const getExamples = (examplesString) => {
@@ -44,10 +46,9 @@ async function saveToGAS(action, data) {
         const result = await response.json();
 
         if (result.status === 'ok') {
-            return result.latestId; // Assuming the server returns the saved data in result.data
+            return { status: 'ok', id: result.latestId }; // Assuming the server returns the saved data in result.data
         } else {
-            console.error("Failed to save data:", result.message);
-            throw new Error("Failed to save data: " + result.message);
+            return { status: 'ng', message: "Failed to save data: " + result.message };  
         }
     } catch (err) {
         console.error("Error in saveToGAS:", err);
@@ -126,6 +127,53 @@ async function getPatternList() {
             }
         } catch (err) {
             console.error("Failed to fetch pattern levels:", err);
+            throw err;
+        }
+        
+    }else{
+        // throw new Error("User token is missing. Cannot fetch pattern levels.");
+        console.error("User token is missing. Cannot fetch pattern levels.");
+    }
+}
+
+async function getPatternDetail(patternId) {
+    if(token){
+        try {
+            let payload = {
+                action: 'getPatternDetail',
+                token: token,
+                userIp: COMMON.ipaddress,
+                patternId: patternId
+            };
+            const response = await fetch(WEB_APP_URL, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) {
+                throw new Error("Server returned status " + response.status);
+            }
+            const result = await response.json();
+
+            if(result.status === 'ok'){
+                const entry = result.data;
+                if(!entry){
+                    return null;
+                }
+                const patternDetail = {
+                    "id": entry[0],
+                    "level": entry[1],
+                    "title": entry[2],
+                    "formula": entry[3],
+                    "explanation": { "en": entry[4], "ja": entry[5], "my": entry[6] },
+                    "examples": getExamples(entry[7]),
+                    "created_at": entry[8],
+                };
+                return {status: 'ok', data: patternDetail};
+            } else {
+                return {status: 'ng', message: "Failed to fetch pattern detail: " + result.message};
+            }
+        } catch (err) {
+            console.error("Failed to fetch pattern detail:", err);
             throw err;
         }
         
