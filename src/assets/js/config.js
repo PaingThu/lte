@@ -96,3 +96,32 @@ export async function tokenCheck(pageType = 'login') {
     }
 }
 
+export function configLink() {
+    const aLinks = document.querySelectorAll('a');
+    const basePath = getBasePath().replace(/\/$/, '');
+
+    aLinks.forEach(link => {
+        const href = link.getAttribute('href');
+
+        if (!href) return;
+
+        if (
+            href.startsWith('http') || 
+            href.startsWith('//') || 
+            href.startsWith('#') || 
+            href.startsWith('mailto:') || 
+            href.startsWith('tel:') || 
+            href.startsWith('javascript:')
+        ) {
+            return;
+        }
+
+        // 3. Skip if the link already contains the base path (prevents double-prefixing)
+        if (href.startsWith(basePath)) return;
+
+        // 4. Safely concatenate ensuring exactly one slash
+        const separator = href.startsWith('/') ? '' : '/';
+        link.setAttribute('href', basePath + separator + href);
+    });
+}
+

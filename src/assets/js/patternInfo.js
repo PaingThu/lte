@@ -1,5 +1,5 @@
 import { api } from "./api.js";
-import { loadingSpinner, tokenCheck, getBasePath } from "./config.js";
+import { loadingSpinner, tokenCheck, getBasePath, configLink } from "./config.js";
 
 const displayArea = document.getElementById('displayArea');
 const addExampleBtn = document.getElementById('addExampleBtn');
@@ -19,6 +19,8 @@ const patternListContainer = document.getElementById('patternListContainer');
 let exampleCount = 1;
 // Levels Data ကို Store လုပ်မယ့် Variable
 let levels = [];
+
+configLink(); // Call configLink to update all links on the page
 
 // English Speaking Patterns Levels Dropdown အတွက် Data Fetch လုပ်မယ့် Function
 async function getPatternLevels() {
