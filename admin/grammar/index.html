@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PatternSpeak : Grammar</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Myanmar:wght@400;700&display=swap"
+        rel="stylesheet">
+  <script type="module" crossorigin src="../../assets/admin/grammar-BU6fRrAT.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/config-DUP6XIy_.js">
+  <link rel="modulepreload" crossorigin href="../../assets/flag-icons.min-BBkWklxj.js">
+  <link rel="stylesheet" crossorigin href="../../assets/config-D7eOLrvZ.css">
+  <link rel="stylesheet" crossorigin href="../../assets/flag-icons-CvIqXkB6.css">
+</head>
+
+<body class="min-h-screen bg-primary">
+
+    <!-- Navigation -->
+    <nav class="bg-white glass-nav sticky top-0 z-[60] px-6 py-4 shadow-xl">
+        <div class="mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="/admin/">
+                    <div
+                        class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20">
+                        <img id="logo-img" alt="" class="w-full h-full drop-shadow-md object-cover">
+                    </div>
+                </a>
+                <span class="text-secondary text-xl font-extrabold tracking-tight uppercase">LEARN <i
+                        class="me-1 lowercase">through</i> <span class="text-primary"> EVERYTHING </span></span>
+            </div>
+            <div class="sm:flex gap-2 bg-secondary p-1 rounded-xl border border-zinc-800">
+                <div class="flex flex-col items-end self-start space-x-4">
+                    <button id="logoutBtn"
+                        class="cursor-pointer text-sm font-medium text-slate-400 hover:text-white transition px-3 py-1.5 rounded-lg">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="relative flex flex-col md:flex-row bg-white" id="mainContainer">
+        <div class="fixed w-full md:w-1/7"><nav class="min-h-[calc(100vh-5rem)] w-full mb-6 md:mb-0 bg-primary  shadow-xl ">
+    <div class="nav-container flex flex-col h-full">
+        <button id="menu-btn" class="focus:outline-none ms-auto p-3 cursor-pointer">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+        <ul class="menu">
+            <li class="menu-item flex items-center gap-3 cursor-pointer">
+                <details id="englishSection" class="group w-full max-w-sm overflow-hidden font-sans">
+                    <summary class="w-full flex justify-between items-center transition-colors p-3 border-b border-primary-dark cursor-pointer group-open:bg-white list-none [&::-webkit-details-marker]:hidden">
+                        <div class="flex items-center gap-2">
+                            <span class="fi fi-gb"></span>
+                            <span class="font-bold">English</span>
+                        </div>
+                        <svg class="size-5 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <div class="flex flex-col">
+                        <a href="/admin/pattern/" id="speaking-pattern-link" class="block p-3 text-white hover:text-mist-200 border-b border-primary-dark transition-colors">
+                        Speaking Pattern
+                        </a>
+                        <a href="/admin/grammar/" id="grammar-pattern-link" class="block p-3 text-white hover:text-mist-200 border-b border-primary-dark transition-colors">
+                        Grammar Pattern
+                        </a>
+                    </div>
+                </details>
+            </li>
+        </ul>
+    </div>
+</nav>
+</div>
+        <div class="ml-0 md:ml-[14.2857143%] content-container w-full h-full md:w-6/7 bg-white">
+            <div class="header h-[56px] px-6 flex items-center border-b border-slate-200 py-4">
+                <h1 class="text-2xl font-bold text-slate-800">English Grammar Patterns</h1>
+                <!-- <button id="newPatternBtn" class="ml-auto bg-primary hover:bg-primary-700 text-white py-2 px-4 rounded cursor-pointer text-sm">New Pattern</button> -->
+            </div> 
+            
+            <div id="patternFormContainer" class="hidden content p-6 border border-slate-200 bg-white">
+                
+            </div>
+            <div id="displayArea" class="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar"></div>
+            <div id="patternList" class="content p-6">
+                <h2>Development in Progress <i class="fas fa-cog fa-spin animate-ping">....</i></h2>
+            </div>
+        </div>
+    </main>
+
+    <!-- Overlay & Sheet -->
+    <div id="modalOverlay"
+        class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-[80] transition-opacity duration-300 opacity-0">
+    </div>
+
+</body>
+
+</html>
