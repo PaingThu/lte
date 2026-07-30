@@ -199,7 +199,7 @@ const fetchPatterns = async (page) => {
                 <tr>
                     <td class="p-2 border text-center">${pattern.level}</td>
                     <td class="p-2 border text-center">
-                        <a href="${getBasePath()}admin/pattern/detail/?id=${pattern.id}" class="ml-2 text-blue-500 hover:underline">></a>
+                        <a href="${getBasePath()}admin/english-pattern/detail/?id=${pattern.id}" class="ml-2 text-blue-500 hover:underline">></a>
                     </td>
                     <td class="p-2 border">${pattern.title}</td>
                     <td class="p-2 border">${pattern.formula}</td>
