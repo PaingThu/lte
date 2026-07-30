@@ -1,3 +1,4 @@
+import { api } from "./api.js";
 import {logo, homePageLogo} from "./config.js";
 const imgElement = document.querySelector('#logo-img');
 imgElement.src = logo;
@@ -329,7 +330,11 @@ const statsMastered = document.getElementById('stats-mastered');
 initApp();
 initVoiceEngine();
 
+
 function initApp() {
+
+    getPatternLevels();
+
     updateUIStrings();
     renderPatternsList();
     updateMasteredCountDisplay();
@@ -414,6 +419,17 @@ function initApp() {
     });
 
     setupSpeechEngine();
+}
+
+async function getPatternLevels() {
+    try {
+        const eplSelect = document.getElementById('eplSelect');
+        console.log("eplSelect " , eplSelect);
+        const response = await api.getLevels();
+        console.log("Levels : ", response);
+    } catch (error) {
+        
+    }
 }
 
 function updateUIStrings() {
